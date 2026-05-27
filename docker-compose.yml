@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: taskflow-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Thewayofthesun1
+      POSTGRES_DB: taskflow
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+
+  api-service:
+    build: ./api-service
+    container_name: taskflow-api
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: Thewayofthesun1
+      DB_NAME: taskflow
+      DB_PORT: 5432
+
+  worker-service:
+    build: ./worker-service
+    container_name: taskflow-worker
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: Thewayofthesun1
+      DB_NAME: taskflow
+      DB_PORT: 5432
+
+  prometheus:
+    image: prom/prometheus
+    container_name: taskflow-prometheus
+    restart: always
+    depends_on:
+      - api-service
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: taskflow-grafana
+    restart: always
+    depends_on:
+      - prometheus
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  grafana-storage:

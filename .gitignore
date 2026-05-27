@@ -1,0 +1,104 @@
+# =========================
+# Node.js
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+*.env
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# VS Code / IDE
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# Terraform
+# =========================
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+terraform.rc
+terraform.tfvars
+*.tfvars
+*.tfvars.json
+
+# =========================
+# Kubernetes temp files
+# =========================
+*.tmp
+
+# =========================
+# Coverage / testing
+# =========================
+coverage/
+.nyc_output/
+
+# =========================
+# Build artifacts
+# =========================
+dist/
+build/
+
+# =========================
+# Secrets / keys / certs
+# =========================
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+# =========================
+# Minikube / Kubernetes local
+# =========================
+.minikube/
+.kube/
+
+# =========================
+# Downloads / binaries
+# =========================
+minikube-linux-amd64
+*.tar.gz
+*.zip
+*.deb
+*.rpm
+*.iso
+*.bin
+
+# =========================
+# Generated artifacts
+# =========================
+*.pdf
+
+# =========================
+# Misc
+# =========================
+tmp/
+temp/
+.cache/

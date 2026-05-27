@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: taskflow-worker
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: taskflow-worker
+
+  template:
+    metadata:
+      labels:
+        app: taskflow-worker
+
+    spec:
+      containers:
+        - name: worker
+          image: taskflow-worker:v1
+          imagePullPolicy: Never
+
+          env:
+            - name: DB_HOST
+              value: postgres
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: Thewayofthesun1
+            - name: DB_NAME
+              value: taskflow
+            - name: DB_PORT
+              value: "5432"
+
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"
