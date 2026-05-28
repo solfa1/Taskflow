@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: taskflow-worker:v1
+          image: taskflow-worker:v2
           imagePullPolicy: Never
 
           env:
